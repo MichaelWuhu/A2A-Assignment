@@ -24,9 +24,15 @@ class TextPart(BaseModel):
     type: str = 'text'
     text: str
 
+class FilePart(BaseModel):
+    type: str = 'file'
+    url: str
+    mimeType: str
+
+# Update Message to accept either TextPart or FilePart
 class Message(BaseModel):
     role: str           # 'user' or 'agent'
-    parts: list[TextPart]
+    parts: list[TextPart | FilePart]  
 
 class TaskRequest(BaseModel):
     id: str             # client-generated task ID
