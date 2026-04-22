@@ -25,10 +25,18 @@ class A2AClient:
     def fetch_agent_card(self) -> dict:
         """Fetch and cache the Agent Card."""
         if self._card is None:
-            url          = f'{self.agent_url}/.well-known/agent.json'
-            resp         = self._http.get(url)
+            url = f'{self.agent_url}/.well-known/agent.json'
+            
+            # --- LOGGING FOR TASK 7 ---
+            print(f"\n[REQUEST] GET {url}")
+            
+            resp = self._http.get(url)
+            
+            # --- LOGGING FOR TASK 7 ---
+            print(f"[RESPONSE] {resp.status_code} - {resp.text[:60]}...")
+            
             resp.raise_for_status()
-            self._card   = resp.json()
+            self._card = resp.json()
         return self._card
 
     def get_skills(self) -> list:
@@ -57,6 +65,14 @@ class A2AClient:
         payload  = self._build_task(text, **kwargs)
         url      = f'{self.agent_url}/tasks/send'
         resp     = self._http.post(url, json=payload)
+        resp.raise_for_status()
+        
+        log_payload = f"{str(payload)[:60]}..."
+        print(f"\n[REQUEST] POST {url} | Payload: {log_payload}")
+        
+        resp = self._http.post(url, json=payload)
+        print(f"[RESPONSE] {resp.status_code} - {resp.text[:60]}...")
+        
         resp.raise_for_status()
         
         response_data = resp.json()
