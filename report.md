@@ -23,3 +23,15 @@ The sessionId field is to help the agent remember the conversation so that it ca
 A realistic multi-agent workflow is uploading a picture of a math problem and asking the agent to help you solve it. The agent sees the photo and sends back text with the steps and the data as well so that the calculator is able to solve it.
 
 ---
+
+# Section 4: Deploying the Agent Service to Cloud Run
+
+### (a) what the --allow-unauthenticated flag does and its security implications 
+
+The --allow-unauthenticated flag prevents any unwanted users from accessing the agent. Since unauthenticated is allowed, this means that hackers or bots can find my address and do things like spam messages costing me a lot of money.
+
+--- 
+
+### (b) how Cloud Run scales to zero and what cold start latency means for A2A clients.
+
+Cloud run makes it so that Google turns off the agent if no one is talking to it so that it won't cost money. Cold start means that the first run may take longer since its been idle for a longer period of time.
