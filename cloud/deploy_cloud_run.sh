@@ -18,7 +18,7 @@ gcloud artifacts repositories create ${REPO} \
 gcloud auth configure-docker ${REGION}-docker.pkg.dev --quiet
 
 # 3. Build & push the container
-docker build -t ${IMAGE} ./server
+docker build --platform linux/amd64 -t ${IMAGE} ./server
 docker push ${IMAGE}
 
 # 4. Deploy to Cloud Run

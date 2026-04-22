@@ -2,7 +2,7 @@
 from client import A2AClient
 
 def main():
-    agent_url = "http://localhost:8000"
+    agent_url = "https://echo-a2a-agent-293994313057.us-central1.run.app"
     
     # Using the client as a context manager ensures close() is called
     with A2AClient(agent_url) as client:

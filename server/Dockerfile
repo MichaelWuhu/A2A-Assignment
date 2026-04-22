@@ -13,4 +13,4 @@ COPY . .
 ENV PORT=8080
 
 # Uvicorn must listen on 0.0.0.0 and $PORT
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port $PORT"]
+CMD ["sh", "-c", "PYTHONPATH=. uvicorn main:app --host 0.0.0.0 --port $PORT"]
